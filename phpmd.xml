@@ -12,7 +12,9 @@
 
     <!-- Import the entire unused code rule set -->
     <rule ref="rulesets/codesize.xml" />
-    <rule ref="rulesets/controversial.xml" />
+    <rule ref="rulesets/controversial.xml">
+        <exclude name="Superglobals" />
+    </rule>
     <rule ref="rulesets/design.xml">
         <exclude name="ExitExpression" />
     </rule>
