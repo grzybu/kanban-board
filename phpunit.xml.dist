@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true">
+    <testsuites>
+        <testsuite name="KanbanBoard">
+            <directory>./src/KanbanBoard/tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./src/KanbanBoard/src</directory>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <!-- and this is where your report will be written -->
+        <log type="junit" target="./test-reports/junit.xml"/>
+    </logging>
+</phpunit>

@@ -1,9 +1,12 @@
 <?php
+
+declare(strict_types=1);
+
 namespace KanbanBoard;
 
 use KanbanBoard\Utilities;
 
-class Login
+class Authentication
 {
 
     private $clientId;

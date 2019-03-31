@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KanbanBoard;
 
 class GithubClient
@@ -18,7 +20,7 @@ class GithubClient
 
     public function milestones($repository)
     {
-        return $this->milestoneApi->all($this->account, $repository);
+        return $this->client->api('issues')->milestones()->all($this->account, $repository);
     }
 
     public function issues($repository, $milestoneId)

@@ -1,13 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
+
 namespace KanbanBoard;
 
 use KanbanBoard\GithubClient;
-use vierbergenlars\SemVer\version;
-
-use vierbergenlars\SemVer\expression;
-use vierbergenlars\SemVer\SemVerException;
-use \Michelf\Markdown;
 
 class Application
 {
@@ -39,7 +37,7 @@ class Application
 
         foreach ($reposByMilestone as $name => $data) {
             $issues = $this->issues($data['repository'], $data['number']);
-            $percent = self::percent($data['closed_issues'], $data['open_issues']);
+            $percent = $this->percent($data['closed_issues'], $data['open_issues']);
             if ($percent) {
                 $milestones[] = [
                     'milestone' => $name,
@@ -68,11 +66,10 @@ class Application
             $issues[self::state($ii)][] = [
                 'id' => $ii['id'], 'number' => $ii['number'],
                 'title' => $ii['title'],
-                'body' => Markdown::defaultTransform($ii['body']),
                 'url' => $ii['html_url'],
-                'assignee' => Utilities::hasValue($ii, 'assignee') ? $ii['assignee']['avatar_url'] . '?s=16' : null,
-                'paused' => self::labelsMatch($ii, $this->pausedLabels),
-                'progress' => self::percent(
+                'assignee' => $this->hasValue($ii, 'assignee') ? $ii['assignee']['avatar_url'] . '?s=16' : null,
+                'paused' => $this->labelsMatch($ii, $this->pausedLabels),
+                'progress' => $this->percent(
                     substr_count(strtolower($ii['body']), '[x]'),
                     substr_count(strtolower($ii['body']), '[ ]')
                 ),
@@ -92,20 +89,20 @@ class Application
         return $issues;
     }
 
-    private static function state(array $issue): string
+    protected function state(array $issue): string
     {
         if ($issue['state'] === 'closed') {
             return 'completed';
-        } elseif (Utilities::hasValue($issue, 'assignee') && $issue['assignee'] !== '') {
+        } elseif ($this->hasValue($issue, 'assignee') && $issue['assignee'] !== '') {
             return 'active';
         } else {
             return 'queued';
         }
     }
 
-    private static function labelsMatch(array $issue, array $needles = []): array
+    protected function labelsMatch(array $issue, array $needles = []): array
     {
-        if (Utilities::hasValue($issue, 'labels')) {
+        if ($this->hasValue($issue, 'labels')) {
             foreach ($issue['labels'] as $label) {
                 if (in_array($label['name'], $needles)) {
                     return [$label['name']];
@@ -115,7 +112,7 @@ class Application
         return [];
     }
 
-    private static function percent(int $complete, int $remaining): array
+    protected function percent(int $complete, int $remaining): array
     {
         $total = $complete + $remaining;
         if ($total > 0) {
@@ -128,5 +125,10 @@ class Application
             ];
         }
         return [];
+    }
+
+    protected function hasValue(array $array, string $key): bool
+    {
+        return is_array($array) && array_key_exists($key, $array) && !empty($array[$key]);
     }
 }
