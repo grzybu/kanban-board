@@ -1,21 +1,13 @@
 <?php
 
 namespace KanbanBoard\Repositories\Milestone;
+use Psr\Container\ContainerInterface;
 
-
-class MilestoneRepository implements MilestoneRepositoryInterface
+class MilestoneRepositoryFactory
 {
-
-    protected $client;
-
-    public function __construct()
+    public function __invoke(ContainerInterface $container)
     {
-
-    }
-
-    public function getMilestones(string $account, string $repository): iterable
-    {
-
+        return new MilestoneRepository();
     }
 
 

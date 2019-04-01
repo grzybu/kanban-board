@@ -29,6 +29,16 @@ return [
     //services
     'Service\Auth' => DI\Factory(\KanbanBoard\Service\Auth\AuthServiceFactory::class),
 
+    'Service\Github\Client' => function () {
+        $filesystemAdapter = new \League\Flysystem\Adapter\Local(sys_get_temp_dir() . '/github-api-cache');
+        $filesystem = new \League\Flysystem\Filesystem($filesystemAdapter);
+        $cachePool = new \Cache\Adapter\Filesystem\FilesystemCachePool($filesystem);
+
+        $client = new Github\Client();
+        $client->addCache($cachePool);
+        return new $client;
+    },
+
     //repositories
     'Repository/Milestone' => DI\Factory(\KanbanBoard\Read\Model\Milestone\RepositoryFactory::class),
 

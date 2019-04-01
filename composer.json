@@ -6,6 +6,7 @@
 	},
 	"require": {
 		"php": "^7.2",
+		"cache/filesystem-adapter": "^1.1@dev",
 		"knplabs/github-api": "^2.12",
 		"mustache/mustache": "^2.9",
 		"nikic/fast-route": "^2.0@dev",
@@ -14,6 +15,7 @@
 		"phpmd/phpmd": "@stable",
 		"phpseclib/phpseclib": "2.0.*",
 		"phpunit/phpunit": "7.4.*",
+		"psr/container": "^1.0@dev",
 		"symfony/http-foundation": "^4.3@dev",
 		"vlucas/phpdotenv": "^3.3@dev"
 	},

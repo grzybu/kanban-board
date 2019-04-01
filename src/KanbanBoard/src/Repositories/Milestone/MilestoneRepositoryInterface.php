@@ -1,6 +1,6 @@
 <?php
 
-namespace KanbanBoard\Repositories;
+namespace KanbanBoard\Repositories\Milestone;
 
 
 interface MilestoneRepositoryInterface

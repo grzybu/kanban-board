@@ -1,15 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: grzybu
- * Date: 01.04.19
- * Time: 14:50
- */
 
 namespace KanbanBoard\Service\Github;
 
 
+use Psr\Container\ContainerInterface;
+
 class ClientFactory
 {
+    public function __invoke(ContainerInterface $container)
+    {
+
+    }
 
 }
