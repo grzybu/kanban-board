@@ -25,6 +25,4 @@ class Github
 
         return $this->githubClient;
     }
-
-
 }

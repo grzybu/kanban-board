@@ -1,6 +1,7 @@
 <?php
 
 namespace KanbanBoard\Read\Milestone;
+
 use Psr\Container\ContainerInterface;
 
 class RepositoryFactory
@@ -17,7 +18,4 @@ class RepositoryFactory
     {
         return Model::class;
     }
-
-
-
 }

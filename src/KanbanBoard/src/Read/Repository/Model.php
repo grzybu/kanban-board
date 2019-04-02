@@ -17,6 +17,4 @@ class Model
     {
         return $this->identifier;
     }
-
-
 }

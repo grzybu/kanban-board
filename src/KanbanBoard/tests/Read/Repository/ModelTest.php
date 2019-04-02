@@ -20,6 +20,5 @@ class ModelTest extends TestCase
     {
         $model = new Model('TEST');
         $this->assertEquals('TEST', $model->getId());
-
     }
 }

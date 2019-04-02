@@ -1,11 +1,13 @@
 {
 	"autoload": {
 		"psr-4": {
-			"KanbanBoard\\": "src/KanbanBoard/src"
+			"KanbanBoard\\": "src/KanbanBoard/src",
+			"Common\\" : "src/Common/src"
 		}
 	},
 	"require": {
 		"php": "^7.2",
+		"broadway/broadway": "^2.0@dev",
 		"cache/filesystem-adapter": "^1.1@dev",
 		"knplabs/github-api": "^2.12",
 		"mustache/mustache": "^2.9",

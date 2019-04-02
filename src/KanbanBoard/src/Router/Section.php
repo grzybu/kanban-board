@@ -7,5 +7,4 @@ namespace KanbanBoard\Router;
 class Section
 {
     public const PROTECTED = 'protected';
-
 }

@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use KanbanBoard\Read\Repository\Repository as RepositoryRepository;
 
-
 class BoardControllerTest extends TestCase
 {
 

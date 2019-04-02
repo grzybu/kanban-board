@@ -64,7 +64,7 @@ class RepositoryTest extends TestCase
             ->method('getClient')
             ->willReturn($this->githubClient);
 
-        $repository = new Repository($this->githubService);
+        $repository = new Repository($this->githubService, Model::class);
         $this->assertEquals([], $repository->getMilestones($account, $repositoryName));
     }
 }

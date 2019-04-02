@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace KanbanBoard\Read\Milestone;
 
-class Model
+use Broadway\ReadModel\SerializableReadModel;
+
+class Model implements SerializableReadModel
 {
     protected $identifier;
 
@@ -14,14 +16,55 @@ class Model
     protected $open_issues;
     protected $html_url;
     protected $repository;
+    protected $title;
 
 
-    public function __construct(int $identifier)
+    public function __construct($identifier)
     {
         $this->identifier = $identifier;
     }
 
-    public function getId(): int
+    /**
+     * @param mixed $milestone
+     */
+    public function setMilestone($milestone): void
+    {
+        $this->milestone = $milestone;
+    }
+
+    /**
+     * @param mixed $number
+     */
+    public function setNumber($number): void
+    {
+        $this->number = $number;
+    }
+
+    /**
+     * @param mixed $closed_issues
+     */
+    public function setClosedIssues($closed_issues): void
+    {
+        $this->closed_issues = $closed_issues;
+    }
+
+    /**
+     * @param mixed $open_issues
+     */
+    public function setOpenIssues($open_issues): void
+    {
+        $this->open_issues = $open_issues;
+    }
+
+    /**
+     * @param mixed $html_url
+     */
+    public function setHtmlUrl($html_url): void
+    {
+        $this->html_url = $html_url;
+    }
+
+    public function getId(): string
     {
         return $this->identifier;
     }
@@ -44,6 +87,23 @@ class Model
 
         return $item;
     }
+
+    public function serialize(): array
+    {
+        $serialized = [
+            'id' => $this->identifier,
+            'milestone' => $this->milestone,
+            'number' => $this->number,
+            'closed_issues' => $this->closed_issues,
+            'open_issues' => $this->open_issues,
+            'html_url' => $this->html_url,
+            'repository' => $this->repository,
+            'title' => $this->title,
+        ];
+
+        return $serialized;
+    }
+
 
     public function getPercent(): array
     {
@@ -98,7 +158,24 @@ class Model
         $this->repository = $repository;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getMilestone()
+    {
+        return $this->milestone;
+    }
 
+    /**
+     * @return mixed
+     */
+    public function getHtmlUrl()
+    {
+        return $this->html_url;
+    }
 
-
+    public function setTitle(string $title)
+    {
+        $this->title = $title;
+    }
 }

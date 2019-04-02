@@ -16,5 +16,4 @@ class RepositoryFactory
 
         return new Repository($repositories);
     }
-
 }

@@ -14,5 +14,4 @@ class SessionManagerFactory
 
         return new SessionManager();
     }
-
 }

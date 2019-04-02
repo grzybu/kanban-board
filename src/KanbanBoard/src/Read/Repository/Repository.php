@@ -10,8 +10,7 @@ class Repository implements RepositoryInterface
 
     public function __construct(array $repositories = [])
     {
-        foreach ($repositories as $repository)
-        {
+        foreach ($repositories as $repository) {
             $this->repositories[$repository] = new Model($repository);
         }
     }

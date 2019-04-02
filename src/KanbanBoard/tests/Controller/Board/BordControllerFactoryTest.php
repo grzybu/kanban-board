@@ -31,7 +31,7 @@ class BoardControllerFactoryTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @test
+     *
      */
     public function itCanCreate()
     {

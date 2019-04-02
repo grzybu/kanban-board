@@ -16,5 +16,4 @@ class RepositoryTest extends TestCase
 
         $this->assertEquals([new Model($data[0])], $repository->getAll());
     }
-
 }

@@ -32,5 +32,4 @@ class GithubFactory
         $filesystem = new \League\Flysystem\Filesystem($filesystemAdapter);
         return new \Cache\Adapter\Filesystem\FilesystemCachePool($filesystem);
     }
-
 }
