@@ -12,8 +12,12 @@ class BoardControllerFactory
     {
         $authService = $container->get('Service\Auth');
         $mustacheEngine = $container->get(\Mustache_Engine::class);
+        $repositoriesRepository = $container->get('Repository\Repository');
+        $milestonesRepository = $container->get('Repository\Milestone');
+
         $response = $container->get('Http\Response');
 
-        return new BoardController($authService, $mustacheEngine,  $response);
+
+        return new BoardController($authService, $mustacheEngine, $repositoriesRepository, $milestonesRepository, $response);
     }
 }

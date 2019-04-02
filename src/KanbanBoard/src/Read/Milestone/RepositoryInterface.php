@@ -1,9 +1,9 @@
 <?php
 
-namespace KanbanBoard\Repositories\Milestone;
+namespace KanbanBoard\Read\Milestone;
 
 
-interface MilestoneRepositoryInterface
+interface RepositoryInterface
 {
     public function getMilestones(string $account, string $repository): iterable;
 }

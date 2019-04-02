@@ -114,6 +114,7 @@ class Application
 
     protected function percent(int $complete, int $remaining): array
     {
+
         $total = $complete + $remaining;
         if ($total > 0) {
             $percent = ($complete or $remaining) ? round($complete / $total * 100) : 0;
