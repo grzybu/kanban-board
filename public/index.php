@@ -12,7 +12,7 @@ call_user_func(function () {
     $eHandler = function ( $errno, $errstr, $errfile, $errline) {
         die('Something went wrong ;(' . PHP_EOL . $errstr);
     };
-    set_error_handler($eHandler);
+    set_error_handler($eHandler, E_ALL & ~E_WARNING));
     set_exception_handler($eHandler);
 
     /** @var \DI\Container $container */
