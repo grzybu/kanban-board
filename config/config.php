@@ -1,6 +1,7 @@
 <?php
 
 use function DI\create;
+use Symfony\Component\HttpFoundation\Request;
 
 return [
 
@@ -52,7 +53,7 @@ return [
 
     'Http\Request' => function () {
 
-        $request =  \Symfony\Component\HttpFoundation\Request::createFromGlobals();
+        $request = Request::createFromGlobals();
         \Symfony\Component\HttpFoundation\Request::setTrustedProxies(
             Request::HEADER_X_FORWARDED_ALL
         );
