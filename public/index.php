@@ -18,7 +18,7 @@ call_user_func(function () {
     }
 
     $dotenv = Dotenv\Dotenv::create('.');
-    $dotenv->load();
+    $dotenv->safeLoad();
 
     try {
         $dotenv->required(['GH_CLIENT_ID', 'GH_CLIENT_SECRET', 'GH_ACCOUNT', 'GH_REPOSITORIES'])->notEmpty();
