@@ -83,7 +83,7 @@ class AuthService
         header('Location: ' . $this->githubAuthUrl . '?' . http_build_query($queryParams));
     }
 
-    public function getAccessToken(string $code, string $state): string
+    public function getAccessToken(string $code, string $state): ?string
     {
         $client = $this->httpClient;
 

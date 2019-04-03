@@ -20,6 +20,7 @@ call_user_func(function () {
     $dotenv = Dotenv\Dotenv::create('.');
     $dotenv->safeLoad();
 
+    // check if required required env variables are set
     try {
         $dotenv->required(['GH_CLIENT_ID', 'GH_CLIENT_SECRET', 'GH_ACCOUNT', 'GH_REPOSITORIES'])->notEmpty();
     } catch (RuntimeException $exception) {
@@ -33,7 +34,6 @@ call_user_func(function () {
 
     /** @var \Symfony\Component\HttpFoundation\Response $request */
     $response = $container->get('Http\Response');
-
 
     $routeInfo = $dispatcher->dispatch($request->getMethod(), $request->getPathInfo());
 

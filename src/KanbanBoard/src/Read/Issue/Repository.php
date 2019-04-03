@@ -3,6 +3,7 @@
 namespace KanbanBoard\Read\Issue;
 
 use Common\Read\DeserializableRepository;
+use Github\Exception\RuntimeException;
 use KanbanBoard\Service\Github\Github as GithubService;
 
 class Repository extends DeserializableRepository implements RepositoryInterface
@@ -19,7 +20,11 @@ class Repository extends DeserializableRepository implements RepositoryInterface
     {
         $issueParameters = ['milestone' => $milestone, 'state' => 'all'];
 
-        $apiData = $this->githubService->getClient()->api('issue')->all($account, $repository, $issueParameters);
-        return parent::deserializeItems($apiData);
+        try {
+            $apiData = $this->githubService->getClient()->api('issue')->all($account, $repository, $issueParameters);
+            return parent::deserializeItems($apiData);
+        } catch (RuntimeException $e) {
+            return [];
+        }
     }
 }

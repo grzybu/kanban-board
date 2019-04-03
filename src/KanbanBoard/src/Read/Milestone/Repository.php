@@ -3,6 +3,7 @@
 namespace KanbanBoard\Read\Milestone;
 
 use Common\Read\DeserializableRepository;
+use Github\Exception\RuntimeException;
 use KanbanBoard\Service\Github\Github as GithubService;
 
 class Repository extends DeserializableRepository implements RepositoryInterface
@@ -17,7 +18,11 @@ class Repository extends DeserializableRepository implements RepositoryInterface
 
     public function getMilestones(string $account, string $repository): iterable
     {
-        $apiData = $this->githubService->getClient()->api('issues')->milestones()->all($account, $repository);
-        return parent::deserializeItems($apiData);
+        try {
+            $apiData = $this->githubService->getClient()->api('issues')->milestones()->all($account, $repository);
+            return parent::deserializeItems($apiData);
+        } catch (RuntimeException $e) {
+            return [];
+        }
     }
 }

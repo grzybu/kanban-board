@@ -31,6 +31,7 @@ class BoardController
 
     public function __invoke()
     {
+
         $milestones = $this->boardDataService->getMilestones();
 
         $content = $this->mustacheEngine->render('index', ['milestones' => $milestones]);

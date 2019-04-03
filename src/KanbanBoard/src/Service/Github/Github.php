@@ -25,4 +25,10 @@ class Github
 
         return $this->githubClient;
     }
+
+
+    public function api(string $name)
+    {
+        return $this->getClient()->api($name);
+    }
 }
