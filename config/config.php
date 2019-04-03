@@ -1,5 +1,7 @@
 <?php
 
+use Symfony\Component\HttpFoundation\Request;
+
 return [
 
     // simple configurattion
@@ -49,7 +51,13 @@ return [
     },
 
     'Http\Request' => function () {
-        return \Symfony\Component\HttpFoundation\Request::createFromGlobals();
+
+        $request = Request::createFromGlobals();
+        // This line is required to run app under proxy
+        Request::setTrustedProxies(['127.0.0.1', $request->server->get('REMOTE_ADDR')], Request::HEADER_X_FORWARDED_ALL ^ Request::HEADER_X_FORWARDED_HOST);
+
+
+        return $request;
     },
 
     'Http\Response' => function () {
