@@ -62,14 +62,12 @@ class BoardDataTest extends TestCase
         $boardData = new BoardData($this->config, $this->repositories, $this->milestones, $this->issues);
 
         $this->assertInternalType('array', $boardData->getMilestones());
-
     }
 
     protected function getSampleMilestones()
     {
         $milestones = [];
         for ($i = 0; $i < rand(3, 10); $i++) {
-
             $data = [
                 'id' => 'id-' . $i,
                 'title' => 'title-' . $i,
@@ -87,9 +85,8 @@ class BoardDataTest extends TestCase
     protected function getSampleIssues()
     {
         $issues = [];
-        $rand = rand(30,200);
+        $rand = rand(30, 200);
         for ($i = 0; $i < $rand; $i++) {
-
             $states = ['open', 'closed', 'random'];
 
             $assignee = [

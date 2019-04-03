@@ -20,7 +20,9 @@ class BoardController
     private $boardDataService;
 
     public function __construct(
-        BoardData $boardDataService, \Mustache_Engine $mustacheEngine, Response $response
+        BoardData $boardDataService,
+        \Mustache_Engine $mustacheEngine,
+        Response $response
     ) {
         $this->mustacheEngine = $mustacheEngine;
         $this->response = $response;

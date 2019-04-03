@@ -22,8 +22,7 @@ class BoardData
         RepositoryRepository $repositoriesRepo,
         MilestonesRepository $milestonesRepo,
         IssuesRepository $issuesRepo
-    )
-    {
+    ) {
         $this->repositoriesRepo = $repositoriesRepo;
         $this->milestonesRepo = $milestonesRepo;
         $this->issuesRepo = $issuesRepo;

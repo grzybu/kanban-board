@@ -78,7 +78,6 @@ class ModelTest extends DeserializableReadModelTestCase
 
         $model->setTitle('title-1');
         $this->assertEquals('title-1', $model->getTitle());
-
     }
 
 
@@ -91,7 +90,6 @@ class ModelTest extends DeserializableReadModelTestCase
         $model->setState('closed');
 
         $this->assertEquals('closed', $model->getState());
-
     }
 
 
@@ -137,7 +135,6 @@ class ModelTest extends DeserializableReadModelTestCase
         $deserializedModel = $deserializer->deserialize($data);
 
         $this->assertInstanceOf(Model::class, $deserializedModel);
-
     }
 
     /**
@@ -176,6 +173,5 @@ class ModelTest extends DeserializableReadModelTestCase
         $model->setBody('[ ] [x] [ ] [ x ]');
 
         $this->assertInternalType('array', $model->getProgress());
-
     }
 }
