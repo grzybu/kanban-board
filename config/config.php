@@ -51,7 +51,13 @@ return [
     },
 
     'Http\Request' => function () {
-        return \Symfony\Component\HttpFoundation\Request::createFromGlobals();
+
+        $request =  \Symfony\Component\HttpFoundation\Request::createFromGlobals();
+        \Symfony\Component\HttpFoundation\Request::setTrustedProxies(
+            Request::HEADER_X_FORWARDED_ALL
+        );
+
+        return $request;
     },
 
     'Http\Response' => function () {
