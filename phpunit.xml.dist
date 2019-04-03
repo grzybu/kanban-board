@@ -7,10 +7,15 @@
         <testsuite name="KanbanBoard">
             <directory>./src/KanbanBoard/tests</directory>
         </testsuite>
+
+        <testsuite name="Common">
+            <directory>./src/Common/tests</directory>
+        </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
+            <directory suffix=".php">./src/Common/src</directory>
             <directory suffix=".php">./src/KanbanBoard/src</directory>
         </whitelist>
     </filter>

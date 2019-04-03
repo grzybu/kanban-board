@@ -7,7 +7,6 @@
 	},
 	"require": {
 		"php": "^7.2",
-		"broadway/broadway": "^2.0@dev",
 		"cache/filesystem-adapter": "^1.1@dev",
 		"knplabs/github-api": "^2.12",
 		"mustache/mustache": "^2.9",
@@ -27,6 +26,9 @@
 	"require-dev": {
 		"squizlabs/php_codesniffer": "^3.0"
 	},
+	"suggest": {
+		"ext-xdebug": "*"
+	},
 	"minimum-stability": "dev",
 	"scripts": {
 		"run"  : "php -S localhost:9000 -t public/",
@@ -36,8 +38,8 @@
 			"@md-check"
 		],
 		"version-check": "php -v",
-		"cs-check": "phpcs src/KanbanBoard/src",
-		"md-check": "phpmd \"src/KanbanBoard/src\" xml phpmd.xml --suffixes php",
+		"cs-check": "phpcs src/Common/src src/KanbanBoard/src",
+		"md-check": "phpmd \"src/Common/src,src/KanbanBoard/src\" xml phpmd.xml --suffixes php",
 		"test": "phpunit --colors=always --coverage-clover test-reports/coverage/clover.xml",
 		"test-coverage": "php -d \"zend_extension=xdebug.so\" vendor/bin/phpunit --stderr --colors=always --coverage-html test-reports/coverage"
 	}

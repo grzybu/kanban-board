@@ -2,24 +2,6 @@
 
 chdir(dirname(__DIR__));
 require 'vendor/autoload.php';
-/*
-use KanbanBoard\GithubClient;
-
-
-$repositories = explode('|', getenv('GH_REPOSITORIES'));
-$authentication = new \KanbanBoard\Authentication();
-$token = $authentication->login();
-$github = new GithubClient($token, getenv('GH_ACCOUNT'));
-$board = new \KanbanBoard\Application($github, $repositories, ['waiting-for-feedback']);
-$data = $board->board();
-$m = new Mustache_Engine([
-    'loader' => new Mustache_Loader_FilesystemLoader('src/views'),
-]);
-
-echo $m->render('index', ['milestones' => $data]);
-
-
-exit;*/
 
 /**
  * Self-called anonymous function that creates its own scope and keep the global namespace clean.
@@ -65,8 +47,16 @@ call_user_func(function () {
             $response->setStatusCode(405);
             break;
         case \FastRoute\Dispatcher::FOUND:
-            $handler = $routeInfo[1][0];
-            $requireAuth  = $routeInfo[1][1] ?? false;
+
+            $requireAuth = $routeInfo[1][1] ?? false;
+            /* @var $authService \KanbanBoard\Service\Auth\AuthService */
+            $authService = $container->get('Service\Auth');
+
+            if ($requireAuth === \Common\Router\Section::PROTECTED && !$authService->isAuthenticated()) {
+                    $handler ='Controller\AuthController';
+            } else {
+                $handler = $routeInfo[1][0];
+            }
 
             $vars = $routeInfo[2];
 
