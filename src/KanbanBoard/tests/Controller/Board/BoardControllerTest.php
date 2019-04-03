@@ -13,15 +13,11 @@ use KanbanBoard\Service\Board\BoardData;
 
 class BoardControllerTest extends TestCase
 {
-
     /** @var MockObject */
-    private $authService;
+    private $boarDataService;
 
     /** @var MockObject */
     private $mustacheEngine;
-
-    /** @var MockObject */
-    private $boarDataService;
 
     /** @var MockObject */
     private $response;
@@ -29,9 +25,8 @@ class BoardControllerTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->authService = $this->getMockBuilder(AuthService::class)->disableOriginalConstructor()->getMock();
-        $this->mustacheEngine = $this->getMockBuilder(\Mustache_Engine::class)->disableOriginalConstructor()->getMock();
         $this->boarDataService = $this->getMockBuilder(BoardData::class)->disableOriginalConstructor()->getMock();
+        $this->mustacheEngine = $this->getMockBuilder(\Mustache_Engine::class)->disableOriginalConstructor()->getMock();
         $this->response = $this->getMockBuilder(Response::class)->disableOriginalConstructor()->getMock();
     }
 
@@ -40,17 +35,13 @@ class BoardControllerTest extends TestCase
      */
     public function testItReturnResponse()
     {
-        $contoller = new BoardController($this->authService, $this->mustacheEngine, $this->boarDataService, $this->response);
+        $controller = new BoardController($this->boarDataService, $this->mustacheEngine, $this->response);
 
         $templateName = 'index';
 
         $data = [];
 
         $contentet = '<html>TEST</html>';
-
-        $this->authService->expects($this->at(0))
-            ->method('isAuthenticated')
-            ->willReturn(true);
 
         $this->boarDataService->expects($this->at(0))
             ->method('getMilestones')
@@ -67,22 +58,6 @@ class BoardControllerTest extends TestCase
             ->willReturnSelf();
 
 
-        $this->assertEquals(call_user_func($contoller), $this->response);
-    }
-
-    /**
-     * @test
-     */
-    public function testItRedirectsToLogin()
-    {
-        $contoller = new BoardController($this->authService, $this->mustacheEngine, $this->boarDataService, $this->response);
-
-        $this->authService->expects($this->at(0))
-            ->method('isAuthenticated')
-            ->willReturn(false);
-
-        $response = new RedirectResponse('/auth');
-
-        $this->assertEquals($response, call_user_func($contoller));
+        $this->assertEquals(call_user_func($controller), $this->response);
     }
 }

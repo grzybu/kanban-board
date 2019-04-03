@@ -13,7 +13,6 @@ class BoardController
 {
     private $mustacheEngine;
     private $response;
-    protected $authService;
     protected $milestonesRepo;
     /**
      * @var BoardData
@@ -21,12 +20,8 @@ class BoardController
     private $boardDataService;
 
     public function __construct(
-        AuthService $authService,
-        \Mustache_Engine $mustacheEngine,
-        BoardData $boardDataService,
-        Response $response
+        BoardData $boardDataService, \Mustache_Engine $mustacheEngine, Response $response
     ) {
-        $this->authService = $authService;
         $this->mustacheEngine = $mustacheEngine;
         $this->response = $response;
         $this->boardDataService = $boardDataService;
@@ -34,19 +29,10 @@ class BoardController
 
     public function __invoke()
     {
-        if (!$this->authService->isAuthenticated()) {
-            return $this->redirectToLogin();
-        }
-
         $milestones = $this->boardDataService->getMilestones();
 
         $content = $this->mustacheEngine->render('index', ['milestones' => $milestones]);
 
         return $this->response->setContent($content);
-    }
-
-    protected function redirectToLogin(): RedirectResponse
-    {
-        return new RedirectResponse('/auth');
     }
 }

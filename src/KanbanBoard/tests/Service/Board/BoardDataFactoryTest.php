@@ -4,7 +4,7 @@ namespace KanbanBoard\Service\Board;
 
 use KanbanBoard\Read\Milestone\Repository as MilestonesRepository;
 use KanbanBoard\Read\Repository\Repository as RepositoryRepository;
-use KanbanBoard\Read\Repository\Repository as IssuesRepository;
+use KanbanBoard\Read\Issue\Repository as IssuesRepository;
 
 
 use PHPUnit\Framework\MockObject\MockObject;
@@ -35,10 +35,16 @@ class BoardDataFactoryTest extends TestCase
 
         $this->milestones = $this->getMockBuilder(MilestonesRepository::class)->disableOriginalConstructor()->getMock();
 
-        $this->issues = $this->getMockBuilder(RepositoryRepository::class)->disableOriginalConstructor()->getMock();
+        $this->issues = $this->getMockBuilder(IssuesRepository::class)->disableOriginalConstructor()->getMock();
 
 
         $index = 0;
+
+        $this->container->expects($this->at($index++))
+            ->method('get')
+            ->with('Config\BoardConfig')
+            ->willReturn(['account' => 'test-account',  'pausedLabels' => ['waiting-for-feedback']]);
+
         $this->container->expects($this->at($index++))
             ->method('get')
             ->with('Repository\Repository')
@@ -54,10 +60,7 @@ class BoardDataFactoryTest extends TestCase
             ->with('Repository\Issue')
             ->willReturn($this->issues);
 
-        $this->container->expects($this->at($index++))
-            ->method('get')
-            ->with('Config\Github.PausedLabels')
-            ->willReturn(['waiting-for-feedback']);
+
 
         $factory = new BoardDataFactory();
 

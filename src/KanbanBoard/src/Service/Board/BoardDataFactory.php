@@ -11,11 +11,12 @@ class BoardDataFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container)
     {
+        $config = $container->get('Config\BoardConfig');
+
         $repositories = $container->get('Repository\Repository');
         $milestones = $container->get('Repository\Milestone');
         $issues = $container->get('Repository\Issue');
 
-        $config = $container->get('Config\BoardConfig');
 
 
         return new BoardData($config, $repositories, $milestones, $issues);

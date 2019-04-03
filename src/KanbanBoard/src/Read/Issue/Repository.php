@@ -18,6 +18,7 @@ class Repository extends DeserializableRepository implements RepositoryInterface
     public function getIssues(string $account, string $repository, string $milestone): iterable
     {
         $issueParameters = ['milestone' => $milestone, 'state' => 'all'];
+
         $apiData = $this->githubService->getClient()->api('issue')->all($account, $repository, $issueParameters);
         return parent::deserializeItems($apiData);
     }

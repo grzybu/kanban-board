@@ -11,11 +11,10 @@ class BoardControllerFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container)
     {
-        $authService = $container->get('Service\Auth');
-        $mustacheEngine = $container->get(\Mustache_Engine::class);
         $boarDataService = $container->get('Service\BoardData');
+        $mustacheEngine = $container->get(\Mustache_Engine::class);
         $response = $container->get('Http\Response');
 
-        return new BoardController($authService, $mustacheEngine, $boarDataService, $response);
+        return new BoardController($boarDataService, $mustacheEngine, $response);
     }
 }

@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace KanbanBoard\Read\Milestone;
 
 use Common\Read\DeserializableModel;
+use Common\Traits\PercentTrait;
 
 class Model implements DeserializableModel
 {
+    use PercentTrait;
+
     protected $identifier;
 
     protected $milestone;
@@ -91,23 +94,13 @@ class Model implements DeserializableModel
 
     public function getPercent(): array
     {
-        $complete = $this->closedIssues;
-        $remaining = $this->openIssues;
+        $complete = (int) $this->closedIssues;
+        $remaining = (int) $this->openIssues;
 
-        $total = $complete + $remaining;
-        if ($total > 0) {
-            $percent = ($complete or $remaining) ? round($complete / $total * 100) : 0;
-            return [
-                'total' => $total,
-                'complete' => $complete,
-                'remaining' => $remaining,
-                'percent' => $percent
-            ];
-        }
-        return [];
+        return $this->percent($complete, $remaining);
     }
 
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }

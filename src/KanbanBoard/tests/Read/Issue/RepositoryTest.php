@@ -42,29 +42,25 @@ class RepositoryTest extends TestCase
 
         $account = 'test-account';
         $repositoryName = 'test-repo';
-
-        $milestones = $this->getMockBuilder(Issue\Issues::class)->disableOriginalConstructor()->getMock();
-
-        $milestones->expects($this->at(0))
-            ->method('all')
-            ->with($account, $repositoryName)
-            ->willReturn([]);
-
-        $this->apiIssue->expects($this->at(0))
-            ->method('milestones')
-            ->willReturn($milestones);
-
-
-        $this->githubClient->expects($this->at(0))
-            ->method('api')
-            ->with('issues')
-            ->willReturn($this->apiIssue);
+        $milestone = 1;
 
         $this->githubService->expects($this->at(0))
             ->method('getClient')
             ->willReturn($this->githubClient);
 
+        $this->githubClient->expects($this->at(0))
+            ->method('api')
+            ->with('issue')
+            ->willReturn($this->apiIssue);
+
+        $this->apiIssue->expects($this->at(0))
+            ->method('all')
+            ->with($account, $repositoryName, ['milestone' => $milestone, 'state' => 'all'])
+            ->willReturn([]);
+
+
+
         $repository = new Repository($this->githubService, Model::class);
-        $this->assertEquals([], $repository->getIssues($account, $repositoryName));
+        $this->assertEquals([], $repository->getIssues($account, $repositoryName, $milestone));
     }
 }
