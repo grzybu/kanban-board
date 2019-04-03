@@ -35,6 +35,9 @@
   </head>
   <body>
   <div class="container-fluid">
+    {{#error}}
+        {{error}}
+    {{/error}}
     {{#milestones}}
         <div class="panel panel-primary">
             <div class="panel-heading">

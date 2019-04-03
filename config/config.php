@@ -1,7 +1,5 @@
 <?php
 
-use function DI\create;
-
 return [
 
     // simple configurattion

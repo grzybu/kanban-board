@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace KanbanBoard\Controller\Auth;
 
-use function Clue\StreamFilter\fun;
-use http\Exception\RuntimeException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\RedirectResponse;

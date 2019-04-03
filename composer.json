@@ -40,7 +40,7 @@
   },
   "minimum-stability": "dev",
   "scripts": {
-    "run": "php -S localhost:9000 -t public/",
+    "serve": "php -S localhost:9000 -t public/",
     "check": [
       "@version-check",
       "@cs-check",

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace KanbanBoard\Controller\Board;
 
-use KanbanBoard\Service\Auth\AuthService;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use KanbanBoard\Service\Board\BoardData;
 

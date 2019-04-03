@@ -4,6 +4,7 @@ namespace KanbanBoard\Read\Milestone;
 
 use Github\Api\Issue;
 use Github\Client;
+use Github\Exception\RuntimeException;
 use KanbanBoard\Service\Github\Github as GithubService;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -49,6 +50,40 @@ class RepositoryTest extends TestCase
             ->method('all')
             ->with($account, $repositoryName)
             ->willReturn([]);
+
+        $this->apiIssue->expects($this->at(0))
+            ->method('milestones')
+            ->willReturn($milestones);
+
+
+        $this->githubClient->expects($this->at(0))
+            ->method('api')
+            ->with('issues')
+            ->willReturn($this->apiIssue);
+
+        $this->githubService->expects($this->at(0))
+            ->method('getClient')
+            ->willReturn($this->githubClient);
+
+        $repository = new Repository($this->githubService, Model::class);
+        $this->assertEquals([], $repository->getMilestones($account, $repositoryName));
+    }
+
+    /**
+     * @test
+     */
+    public function testHandleExceptions()
+    {
+
+        $account = 'test-account';
+        $repositoryName = 'test-repo';
+
+        $milestones = $this->getMockBuilder(Issue\Milestones::class)->disableOriginalConstructor()->getMock();
+
+        $milestones->expects($this->at(0))
+            ->method('all')
+            ->with($account, $repositoryName)
+            ->willThrowException(new RuntimeException("no"));
 
         $this->apiIssue->expects($this->at(0))
             ->method('milestones')

@@ -7,8 +7,22 @@ require 'vendor/autoload.php';
  * Self-called anonymous function that creates its own scope and keep the global namespace clean.
  */
 call_user_func(function () {
+    // dummy exception handler
+    $eHandler = function (Throwable $throwable) {
+        die('Something went wrong ;(' . PHP_EOL . $throwable->getMessage());
+    };
+    set_error_handler($eHandler);
+    set_exception_handler($eHandler);
+
     /** @var \DI\Container $container */
     $container = require 'config/container.php';
+
+    /** @var \Symfony\Component\HttpFoundation\Request $request */
+    $request = $container->get('Http\Request');
+
+    /** @var \Symfony\Component\HttpFoundation\Response $request */
+    $response = $container->get('Http\Response');
+
 
     /** @var \KanbanBoard\Session\SessionManager $sessionManager */
     $sessionManager = $container->get('SessionManager');
@@ -29,12 +43,6 @@ call_user_func(function () {
 
     $dispatcher = $container->get('Dispatcher');
 
-    /** @var \Symfony\Component\HttpFoundation\Request $request */
-    $request = $container->get('Http\Request');
-
-    /** @var \Symfony\Component\HttpFoundation\Response $request */
-    $response = $container->get('Http\Response');
-
     $routeInfo = $dispatcher->dispatch($request->getMethod(), $request->getPathInfo());
 
     switch ($routeInfo[0]) {
@@ -53,7 +61,7 @@ call_user_func(function () {
             $authService = $container->get('Service\Auth');
 
             if ($requireAuth === \Common\Router\Section::PROTECTED && !$authService->isAuthenticated()) {
-                    $handler ='Controller\AuthController';
+                $handler = 'Controller\AuthController';
             } else {
                 $handler = $routeInfo[1][0];
             }

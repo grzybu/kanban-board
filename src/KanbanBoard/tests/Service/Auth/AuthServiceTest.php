@@ -2,16 +2,11 @@
 
 namespace KanbanBoard\Service\Auth;
 
-use function Clue\StreamFilter\fun;
-use function DI\value;
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use http\Exception\RuntimeException;
 use Common\Session\SessionManager;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
 class AuthServiceTest extends TestCase
@@ -333,17 +328,10 @@ class AuthServiceTest extends TestCase
     /**
      * @test
      */
-    public function itCannotLoginWithWronStateParam()
+    public function itCannotLoginWithWrongStateParam()
     {
         $state = random_bytes(32);
         $code = 'test-code';
-
-        $postData = [
-            'client_id' => $this->config['clientId'],
-            'client_secret' => $this->config['clientSecret'],
-            'state' => $state,
-            'code' => $code
-        ];
 
         $this->sessionManager->expects($this->at(0))
             ->method('get')

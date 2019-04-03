@@ -55,7 +55,7 @@ class AuthService
         return $state;
     }
 
-    protected function varifyState(string $returnedState = null): bool
+    protected function verifyState(string $returnedState): bool
     {
         if (!$returnedState || ($returnedState !== $this->getState())) {
             return false;
@@ -124,14 +124,14 @@ class AuthService
         return $token;
     }
 
-    public function login(string $code, string $state = null): bool
+    public function login(string $code, string $state): bool
     {
         if ($this->isAuthenticated()) {
             return true;
         }
 
 
-        if (!$this->varifyState($state)) {
+        if (!$this->verifyState($state)) {
             throw new \RuntimeException('Could not verify state param');
         }
 

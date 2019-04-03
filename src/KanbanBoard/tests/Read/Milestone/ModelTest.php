@@ -1,15 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: grzybu
- * Date: 2019-04-01
- * Time: 20:57
- */
 
 namespace KanbanBoard\Read\Milestone;
 
-use Broadway\ReadModel\SerializableReadModel;
-use Broadway\ReadModel\Testing\SerializableReadModelTestCase;
 use Common\Read\DeserializableReadModelTestCase;
 
 class ModelTest extends DeserializableReadModelTestCase

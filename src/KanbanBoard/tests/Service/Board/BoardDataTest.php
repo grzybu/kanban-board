@@ -2,8 +2,6 @@
 
 namespace KanbanBoard\Service\Board;
 
-use function Clue\StreamFilter\fun;
-use Github\Api\Issue\Milestones;
 use KanbanBoard\Read\Repository\Model;
 use KanbanBoard\Read\Repository\Repository;
 use PHPUnit\Framework\MockObject\MockObject;
