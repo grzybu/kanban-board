@@ -37,7 +37,6 @@ class BoardData
         $milestones = [];
 
         foreach ($reposByMilestone as $name => $milestone) {
-            /** @var $milestone MilestoneModel */
             $issues = $this->getIssues($milestone->getRepository(), $milestone->getNumber());
 
             $percent = $milestone->getPercent();
@@ -56,6 +55,10 @@ class BoardData
         return $milestones;
     }
 
+    /**
+     * @param array $repositories
+     * @return MilestoneModel[]
+     */
     protected function getReposByMilestone(array $repositories): array
     {
         $reposByMilestone = [];

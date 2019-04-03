@@ -7,5 +7,3 @@ $containerBuilder->addDefinitions(__DIR__ . '/config.php');
 $container = $containerBuilder->build();
 
 return $container;
-
-

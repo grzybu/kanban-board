@@ -1,6 +1,8 @@
 <?php
 
+use Common\Router\Section;
+
 return [
-    ['GET', '/',  ['Controller\DefaultController', \Common\Router\Section::PROTECTED ]],
+    ['GET', '/',  ['Controller\DefaultController', Section::PROTECTED ]],
     ['GET', '/auth',  ['Controller\AuthController']],
 ];

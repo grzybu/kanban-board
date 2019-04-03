@@ -2,8 +2,6 @@
 
 namespace Common\Read;
 
-use KanbanBoard\Read\Milestone\Model;
-use KanbanBoard\Read\Milestone\Repository;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -29,7 +27,6 @@ class DeserializableRepositoryTest extends TestCase
     {
         $repository = new DeserializableTestRepository(DeserializableTestModel::class);
 
-        $data = ['id' => 1, 'property-1' => 2, 'test' => 3];
         $model = new DeserializableTestModel(1, 'property-1');
         $this->assertEquals($model, $repository->getItem());
     }

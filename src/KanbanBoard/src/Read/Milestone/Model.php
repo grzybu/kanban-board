@@ -27,41 +27,26 @@ class Model implements DeserializableModel
         $this->identifier = $identifier;
     }
 
-    /**
-     * @param mixed $milestone
-     */
     public function setMilestone($milestone): void
     {
         $this->milestone = $milestone;
     }
 
-    /**
-     * @param mixed $number
-     */
     public function setNumber($number): void
     {
         $this->number = $number;
     }
 
-    /**
-     * @param mixed $closedIssues
-     */
     public function setClosedIssues($closedIssues): void
     {
         $this->closedIssues = $closedIssues;
     }
 
-    /**
-     * @param mixed $openIssues
-     */
     public function setOpenIssues($openIssues): void
     {
         $this->openIssues = $openIssues;
     }
 
-    /**
-     * @param mixed $htmlUrl
-     */
     public function setHtmlUrl($htmlUrl): void
     {
         $this->htmlUrl = $htmlUrl;
@@ -72,7 +57,7 @@ class Model implements DeserializableModel
         return $this->identifier;
     }
 
-    public static function deserialize(array $data)
+    public static function deserialize(array $data): Model
     {
         $item = new static($data['id']);
 

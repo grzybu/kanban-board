@@ -1,46 +1,55 @@
 {
-	"autoload": {
-		"psr-4": {
-			"KanbanBoard\\": "src/KanbanBoard/src",
-			"Common\\" : "src/Common/src"
-		}
-	},
-	"require": {
-		"php": "^7.2",
-		"cache/filesystem-adapter": "^1.1@dev",
-		"knplabs/github-api": "^2.12",
-		"mustache/mustache": "^2.9",
-		"nikic/fast-route": "^2.0@dev",
-		"php-di/php-di": "^6.0",
-		"php-http/guzzle6-adapter": "^1.0",
-		"phpmd/phpmd": "@stable",
-		"phpseclib/phpseclib": "2.0.*",
-		"phpunit/phpunit": "7.4.*",
-		"psr/container": "^1.0@dev",
-		"symfony/http-foundation": "^4.3@dev",
-		"vlucas/phpdotenv": "^3.3@dev"
-	},
-	"config": {
-		"sort-packages": true
-	},
-	"require-dev": {
-		"squizlabs/php_codesniffer": "^3.0"
-	},
-	"suggest": {
-		"ext-xdebug": "*"
-	},
-	"minimum-stability": "dev",
-	"scripts": {
-		"run"  : "php -S localhost:9000 -t public/",
-		"check": [
-			"@version-check",
-			"@cs-check",
-			"@md-check"
-		],
-		"version-check": "php -v",
-		"cs-check": "phpcs src/Common/src src/KanbanBoard/src",
-		"md-check": "phpmd \"src/Common/src,src/KanbanBoard/src\" xml phpmd.xml --suffixes php",
-		"test": "phpunit --colors=always --coverage-clover test-reports/coverage/clover.xml",
-		"test-coverage": "php -d \"zend_extension=xdebug.so\" vendor/bin/phpunit --stderr --colors=always --coverage-html test-reports/coverage"
-	}
+  "name": "KanbanBoard app",
+  "description": "Simple PHP KanbanBoard app",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Bartosz Grzyb",
+      "email": "bgrzyb@blomu.pl"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "KanbanBoard\\": "src/KanbanBoard/src",
+      "Common\\": "src/Common/src"
+    }
+  },
+  "require": {
+    "php": "^7.2",
+    "cache/filesystem-adapter": "^1.1@dev",
+    "knplabs/github-api": "^2.12",
+    "mustache/mustache": "^2.9",
+    "nikic/fast-route": "^2.0@dev",
+    "php-di/php-di": "^6.0",
+    "php-http/guzzle6-adapter": "^1.0",
+    "phpmd/phpmd": "@stable",
+    "phpseclib/phpseclib": "2.0.*",
+    "phpunit/phpunit": "7.4.*",
+    "psr/container": "^1.0@dev",
+    "symfony/http-foundation": "^4.3@dev",
+    "vlucas/phpdotenv": "^3.3@dev"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.0"
+  },
+  "suggest": {
+    "ext-xdebug": "*"
+  },
+  "minimum-stability": "dev",
+  "scripts": {
+    "serve": "php -S localhost:9000 -t public/",
+    "check": [
+      "@version-check",
+      "@cs-check",
+      "@md-check"
+    ],
+    "version-check": "php -v",
+    "cs-check": "phpcs src/Common/src src/KanbanBoard/src",
+    "md-check": "phpmd \"src/Common/src,src/KanbanBoard/src\" xml phpmd.xml --suffixes php",
+    "test": "phpunit --colors=always --coverage-clover test-reports/coverage/clover.xml",
+    "test-coverage": "php -d \"zend_extension=xdebug.so\" vendor/bin/phpunit --stderr --colors=always --coverage-html test-reports/coverage"
+  }
 }

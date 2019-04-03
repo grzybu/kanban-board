@@ -1,6 +1,5 @@
 <?php
 
-use function DI\create;
 use Symfony\Component\HttpFoundation\Request;
 
 return [

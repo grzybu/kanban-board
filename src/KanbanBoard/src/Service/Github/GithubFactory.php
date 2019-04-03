@@ -2,7 +2,6 @@
 
 namespace KanbanBoard\Service\Github;
 
-use Cache\Adapter\Filesystem\FilesystemCachePool;
 use Common\DI\FactoryInterface;
 use Psr\Container\ContainerInterface;
 use Psr\SimpleCache\CacheInterface;

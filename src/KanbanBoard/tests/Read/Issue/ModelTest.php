@@ -2,9 +2,6 @@
 
 namespace KanbanBoard\Read\Issue;
 
-use Broadway\ReadModel\SerializableReadModel;
-use Broadway\ReadModel\Testing\SerializableReadModelTestCase;
-use Common\Read\DeserializableModel;
 use Common\Read\DeserializableReadModelTestCase;
 use Common\Read\Deserializer;
 
@@ -92,36 +89,6 @@ class ModelTest extends DeserializableReadModelTestCase
         $this->assertEquals('closed', $model->getState());
     }
 
-
-
-    public function itCanGetPercentage()
-    {
-        $model = new Model(1);
-
-        $model->setOpenIssues(1);
-        $model->setClosedIssues(2);
-
-        $expected = [
-            'total' => 3,
-            'complete' => 2,
-            'remaining' => 1,
-            'percent' => 67.
-        ];
-
-        $this->assertEquals($expected, $model->getPercent());
-    }
-    
-    public function itReturnsEmptyPercentageWhenTotalZero()
-    {
-        $model = new Model(1);
-
-        $model->setOpenIssues(0);
-        $model->setClosedIssues(0);
-
-        $expected = [];
-
-        $this->assertEquals($expected, $model->getPercent());
-    }
 
     /**
      * @test

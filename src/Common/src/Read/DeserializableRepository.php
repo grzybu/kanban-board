@@ -2,8 +2,6 @@
 
 namespace Common\Read;
 
-use Broadway\Serializer\SimpleInterfaceSerializer;
-
 abstract class DeserializableRepository
 {
     protected $class;

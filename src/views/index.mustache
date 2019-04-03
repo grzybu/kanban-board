@@ -35,6 +35,9 @@
   </head>
   <body>
   <div class="container-fluid">
+    {{#error}}
+        {{error}}
+    {{/error}}
     {{#milestones}}
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -91,6 +94,10 @@
                 {{/progress}}
             </div>
         </div>
+    {{/milestones}}
+
+    {{^milestones}}
+        No milestones :(
     {{/milestones}}
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

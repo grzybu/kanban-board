@@ -4,6 +4,7 @@ namespace KanbanBoard\Read\Issue;
 
 use Github\Api\Issue;
 use Github\Client;
+use Github\Exception\RuntimeException;
 use KanbanBoard\Service\Github\Github as GithubService;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -62,5 +63,32 @@ class RepositoryTest extends TestCase
 
         $repository = new Repository($this->githubService, Model::class);
         $this->assertEquals([], $repository->getIssues($account, $repositoryName, $milestone));
+    }
+
+    /**
+     * @test
+     */
+    public function itCanHandleExceptions()
+    {
+
+        $account = 'test-account';
+        $repositoryName = 'test-repo';
+        $milestone = 1;
+
+        $this->githubService->expects($this->at(0))
+            ->method('getClient')
+            ->willReturn($this->githubClient);
+
+
+        $this->githubClient->expects($this->at(0))
+            ->method('api')
+            ->with('issue')
+            ->willThrowException(new RuntimeException("Not FOund"));
+
+
+        $repository = new Repository($this->githubService, Model::class);
+        $result = $repository->getIssues($account, $repositoryName, $milestone);
+
+        $this->assertEquals([], $result);
     }
 }

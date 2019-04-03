@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace KanbanBoard\Controller\Board;
 
-use KanbanBoard\Service\Auth\AuthService;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;

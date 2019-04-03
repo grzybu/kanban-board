@@ -4,183 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c86831cb5b2bb6e7f63cdb376cf5e019",
+    "content-hash": "05eb9c2f24d4a5ae9bb4815aef3a62cb",
     "packages": [
-        {
-            "name": "beberlei/assert",
-            "version": "v3.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/beberlei/assert.git",
-                "reference": "fd82f4c8592c8128dd74481034c31da71ebafc56"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/beberlei/assert/zipball/fd82f4c8592c8128dd74481034c31da71ebafc56",
-                "reference": "fd82f4c8592c8128dd74481034c31da71ebafc56",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "*",
-                "phpstan/phpstan-shim": "*",
-                "phpunit/phpunit": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Assert\\": "lib/Assert"
-                },
-                "files": [
-                    "lib/Assert/functions.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-2-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Benjamin Eberlei",
-                    "email": "kontakt@beberlei.de",
-                    "role": "Lead Developer"
-                },
-                {
-                    "name": "Richard Quadling",
-                    "email": "rquadling@gmail.com",
-                    "role": "Collaborator"
-                }
-            ],
-            "description": "Thin assertion library for input validation in business models.",
-            "keywords": [
-                "assert",
-                "assertion",
-                "validation"
-            ],
-            "time": "2018-12-24T15:25:25+00:00"
-        },
-        {
-            "name": "broadway/broadway",
-            "version": "2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/broadway/broadway.git",
-                "reference": "412ce1830c919277368cdd46abbeff7125248a6f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/broadway/broadway/zipball/412ce1830c919277368cdd46abbeff7125248a6f",
-                "reference": "412ce1830c919277368cdd46abbeff7125248a6f",
-                "shasum": ""
-            },
-            "require": {
-                "beberlei/assert": "~3.0",
-                "broadway/uuid-generator": "~0.4.0",
-                "php": ">=7.1"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.1",
-                "malukenho/docheader": "^0.1.7",
-                "monolog/monolog": "~1.8",
-                "phpunit/phpunit": "^6.0",
-                "ramsey/uuid": "^3.0"
-            },
-            "suggest": {
-                "broadway/broadway-bundle": "Symfony bundle for broadway/broadway",
-                "broadway/broadway-saga": "Saga component for Broadway",
-                "broadway/event-store-dbal": "Event store implementation using doctrine/dbal",
-                "broadway/read-model-elasticsearch": "Elasticsearch read model implementation",
-                "psr/log-implementation": "Implementation for PSR3, LoggerInterface"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Broadway\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "othillo",
-                    "email": "othillo@othillo.nl"
-                },
-                {
-                    "name": "Alexander",
-                    "email": "iam.asm89@gmail.com"
-                },
-                {
-                    "name": "Qandidate.com",
-                    "homepage": "http://labs.qandidate.com/"
-                },
-                {
-                    "name": "Willem-Jan",
-                    "email": "wjzijderveld@gmail.com"
-                },
-                {
-                    "name": "Emil",
-                    "email": "emil@broekmeulen.com"
-                },
-                {
-                    "name": "Fritsjan",
-                    "email": "fritsjan@qandidate.com"
-                }
-            ],
-            "description": "Infrastructure and testing helpers for creating CQRS and event sourced applications.",
-            "keywords": [
-                "cqrs",
-                "ddd",
-                "domain-driven design",
-                "event sourcing"
-            ],
-            "time": "2019-01-07T19:25:20+00:00"
-        },
-        {
-            "name": "broadway/uuid-generator",
-            "version": "0.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/broadway/broadway-uuid-generator.git",
-                "reference": "3c5307e62975113d370d18d36c9fcd792b21032a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/broadway/broadway-uuid-generator/zipball/3c5307e62975113d370d18d36c9fcd792b21032a",
-                "reference": "3c5307e62975113d370d18d36c9fcd792b21032a",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.9"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8",
-                "ramsey/uuid": "^3.0"
-            },
-            "suggest": {
-                "ramsey/uuid": "Allows creating UUIDs"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Broadway\\UuidGenerator\\": "src/Broadway/UuidGenerator"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "UUID generator for broadway/broadway.",
-            "time": "2016-12-14T10:47:27+00:00"
-        },
         {
             "name": "cache/adapter-common",
             "version": "dev-master",
@@ -628,12 +453,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "31ea59d632d3ac145300fffb2873a195172c0814"
+                "reference": "a346647434953deb5bd599d92922b2d225e25170"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/31ea59d632d3ac145300fffb2873a195172c0814",
-                "reference": "31ea59d632d3ac145300fffb2873a195172c0814",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/a346647434953deb5bd599d92922b2d225e25170",
+                "reference": "a346647434953deb5bd599d92922b2d225e25170",
                 "shasum": ""
             },
             "require": {
@@ -691,7 +516,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2019-02-20T09:29:56+00:00"
+            "time": "2019-04-01T06:40:32+00:00"
         },
         {
             "name": "knplabs/github-api",
@@ -3416,12 +3241,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/contracts.git",
-                "reference": "a3bd7640436cc3848ae8bf2aa441d0d39fbc3b3f"
+                "reference": "a4b5e697e24544ddeaf9f9255cdda6e4c2c32659"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/contracts/zipball/a3bd7640436cc3848ae8bf2aa441d0d39fbc3b3f",
-                "reference": "a3bd7640436cc3848ae8bf2aa441d0d39fbc3b3f",
+                "url": "https://api.github.com/repos/symfony/contracts/zipball/a4b5e697e24544ddeaf9f9255cdda6e4c2c32659",
+                "reference": "a4b5e697e24544ddeaf9f9255cdda6e4c2c32659",
                 "shasum": ""
             },
             "require": {
@@ -3479,7 +3304,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-03-29T18:47:03+00:00"
+            "time": "2019-04-03T09:22:57+00:00"
         },
         {
             "name": "symfony/dependency-injection",
@@ -3487,12 +3312,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "0d69ef5fa1966ed90ce986fd8ba686d87575e350"
+                "reference": "c5fd4540e319c18727e2f72d79698b0e10c19b81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/0d69ef5fa1966ed90ce986fd8ba686d87575e350",
-                "reference": "0d69ef5fa1966ed90ce986fd8ba686d87575e350",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/c5fd4540e319c18727e2f72d79698b0e10c19b81",
+                "reference": "c5fd4540e319c18727e2f72d79698b0e10c19b81",
                 "shasum": ""
             },
             "require": {
@@ -3552,7 +3377,7 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2019-03-28T11:22:02+00:00"
+            "time": "2019-04-03T12:19:39+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -3560,12 +3385,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "fc2eed9862f01faa64ee93aa2655467b184bfe4f"
+                "reference": "6fa16ab8a5800c23772de2dc4efabc3bd6922309"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/fc2eed9862f01faa64ee93aa2655467b184bfe4f",
-                "reference": "fc2eed9862f01faa64ee93aa2655467b184bfe4f",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/6fa16ab8a5800c23772de2dc4efabc3bd6922309",
+                "reference": "6fa16ab8a5800c23772de2dc4efabc3bd6922309",
                 "shasum": ""
             },
             "require": {
@@ -3602,7 +3427,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2019-03-04T09:20:13+00:00"
+            "time": "2019-03-27T09:50:42+00:00"
         },
         {
             "name": "symfony/http-foundation",
@@ -3610,12 +3435,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "034e97634a0e01087dc95d58f31a4d24f97b94df"
+                "reference": "62b6e8c1ec5f4a8ac5d24b3122631061e3313311"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/034e97634a0e01087dc95d58f31a4d24f97b94df",
-                "reference": "034e97634a0e01087dc95d58f31a4d24f97b94df",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/62b6e8c1ec5f4a8ac5d24b3122631061e3313311",
+                "reference": "62b6e8c1ec5f4a8ac5d24b3122631061e3313311",
                 "shasum": ""
             },
             "require": {
@@ -3657,7 +3482,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2019-03-22T08:16:47+00:00"
+            "time": "2019-04-03T08:47:24+00:00"
         },
         {
             "name": "symfony/mime",
@@ -3724,12 +3549,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
-                "reference": "c2305bbf62b2c218158a4fea227d825489810dad"
+                "reference": "60f8df525c804c66f6ea03fe121dc65b6f95a78e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/c2305bbf62b2c218158a4fea227d825489810dad",
-                "reference": "c2305bbf62b2c218158a4fea227d825489810dad",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/60f8df525c804c66f6ea03fe121dc65b6f95a78e",
+                "reference": "60f8df525c804c66f6ea03fe121dc65b6f95a78e",
                 "shasum": ""
             },
             "require": {
@@ -3770,7 +3595,7 @@
                 "configuration",
                 "options"
             ],
-            "time": "2019-02-23T15:22:31+00:00"
+            "time": "2019-03-31T11:47:13+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -4008,16 +3833,16 @@
         },
         {
             "name": "theseer/tokenizer",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theseer/tokenizer.git",
-                "reference": "cb2f008f3f05af2893a87208fe6a6c4985483f8b"
+                "reference": "06b6ce404ee574e9c1787fb67bb9980ca4387c34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/cb2f008f3f05af2893a87208fe6a6c4985483f8b",
-                "reference": "cb2f008f3f05af2893a87208fe6a6c4985483f8b",
+                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/06b6ce404ee574e9c1787fb67bb9980ca4387c34",
+                "reference": "06b6ce404ee574e9c1787fb67bb9980ca4387c34",
                 "shasum": ""
             },
             "require": {
@@ -4044,7 +3869,7 @@
                 }
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
-            "time": "2017-04-07T12:08:54+00:00"
+            "time": "2019-04-03T18:37:40+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -4157,12 +3982,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "f0ff7919aba8fbd4b89393dd074ae2d29c5172bc"
+                "reference": "dd3f6e0813e0c67a2a30c53abc724377cb6db2f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/f0ff7919aba8fbd4b89393dd074ae2d29c5172bc",
-                "reference": "f0ff7919aba8fbd4b89393dd074ae2d29c5172bc",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/dd3f6e0813e0c67a2a30c53abc724377cb6db2f2",
+                "reference": "dd3f6e0813e0c67a2a30c53abc724377cb6db2f2",
                 "shasum": ""
             },
             "require": {
@@ -4200,13 +4025,12 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2019-03-26T22:19:30+00:00"
+            "time": "2019-04-03T04:26:52+00:00"
         }
     ],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "broadway/broadway": 20,
         "cache/filesystem-adapter": 20,
         "nikic/fast-route": 20,
         "phpmd/phpmd": 0,

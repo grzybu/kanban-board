@@ -2,7 +2,6 @@
 
 namespace KanbanBoard\Read\Repository;
 
-use KanbanBoard\Service\Github\Github;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
