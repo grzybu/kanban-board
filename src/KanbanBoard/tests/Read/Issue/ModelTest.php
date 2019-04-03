@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: grzybu
- * Date: 2019-04-01
- * Time: 20:57
- */
 
-namespace KanbanBoard\Read\Milestone;
+namespace KanbanBoard\Read\Issue;
 
 use Broadway\ReadModel\SerializableReadModel;
 use Broadway\ReadModel\Testing\SerializableReadModelTestCase;
@@ -66,8 +60,8 @@ class ModelTest extends DeserializableReadModelTestCase
 
         $this->assertEquals($model->getUrl(), $model->getHtmlUrl());
 
-        $model->setMilestone('milestone-1');
-        $this->assertEquals($model->getMilestone(), 'milestone-1');
+        $model->setIssue('milestone-1');
+        $this->assertEquals($model->getIssue(), 'milestone-1');
 
         $model->setTitle('title-1');
         $this->assertEquals('title-1', $model->getTitle());

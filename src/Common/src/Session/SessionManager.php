@@ -2,20 +2,17 @@
 
 declare(strict_types=1);
 
-namespace KanbanBoard\Session;
+namespace Common\Session;
 
 class SessionManager extends \SessionHandler
 {
-    protected $key;
     protected $name;
     protected $cookie;
 
-    public function __construct($key, $name = 'MY_SESSION', $cookie = [])
+    public function __construct($name = 'MY_SESSION')
     {
-        $this->key = $key;
         $this->name = $name;
-        $this->cookie = $cookie;
-        $this->cookie += [
+        $this->cookie = [
             'lifetime' => 0,
             'path' => ini_get('session.cookie_path'),
             'domain' => ini_get('session.cookie_domain'),
@@ -42,7 +39,7 @@ class SessionManager extends \SessionHandler
     public function start()
     {
         if (session_id() === '') {
-            session_start();
+            return session_start();
         }
         return false;
     }
@@ -70,21 +67,9 @@ class SessionManager extends \SessionHandler
         return session_regenerate_id(true);
     }
 
-    public function read($id)
-    {
-        return mcrypt_decrypt(MCRYPT_3DES, $this->key, parent::read($id), MCRYPT_MODE_ECB);
-    }
-
-    public function write($id, $data)
-    {
-        return parent::write($id, mcrypt_encrypt(MCRYPT_3DES, $this->key, $data, MCRYPT_MODE_ECB));
-    }
-
     public function isExpired($ttl = 30)
     {
-        $last = isset($_SESSION['_last_activity'])
-            ? $_SESSION['_last_activity']
-            : false;
+        $last = $_SESSION['_last_activity'] ?? false;
         if ($last !== false && time() - $last > $ttl * 60) {
             return true;
         }

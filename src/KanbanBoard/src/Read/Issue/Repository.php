@@ -1,6 +1,6 @@
 <?php
 
-namespace KanbanBoard\Read\Milestone;
+namespace KanbanBoard\Read\Issue;
 
 use Common\Read\DeserializableRepository;
 use KanbanBoard\Service\Github\Github as GithubService;
@@ -15,9 +15,10 @@ class Repository extends DeserializableRepository implements RepositoryInterface
         parent::__construct($class);
     }
 
-    public function getMilestones(string $account, string $repository): iterable
+    public function getIssues(string $account, string $repository, string $milestone): iterable
     {
-        $apiData = $this->githubService->getClient()->api('issues')->milestones()->all($account, $repository);
+        $issueParameters = ['milestone' => $milestone, 'state' => 'all'];
+        $apiData = $this->githubService->getClient()->api('issue')->all($account, $repository, $issueParameters);
         return parent::deserializeItems($apiData);
     }
 }

@@ -52,7 +52,7 @@ class Application
         return $milestones;
     }
 
-    private function issues($repository, $milestoneId): array
+    protected function issues($repository, $milestoneId): array
     {
         $milestoneIssues = $this->github->issues($repository, $milestoneId);
 

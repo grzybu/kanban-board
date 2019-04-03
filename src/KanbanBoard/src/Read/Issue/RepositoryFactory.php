@@ -1,6 +1,6 @@
 <?php
 
-namespace KanbanBoard\Read\Milestone;
+namespace KanbanBoard\Read\Issue;
 
 use Common\DI\FactoryInterface;
 use Psr\Container\ContainerInterface;

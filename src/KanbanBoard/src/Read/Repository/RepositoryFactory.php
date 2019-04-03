@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace KanbanBoard\Read\Repository;
 
+use Common\DI\FactoryInterface;
 use Psr\Container\ContainerInterface;
 
-class RepositoryFactory
+class RepositoryFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container)
     {

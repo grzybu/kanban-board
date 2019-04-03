@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace KanbanBoard\Service\Auth;
 
+use Common\DI\FactoryInterface;
 use Psr\Container\ContainerInterface;
 use GuzzleHttp\Client;
 
-class AuthServiceFactory
+class AuthServiceFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container)
     {

@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace KanbanBoard\Controller\Auth;
 
+use Common\DI\FactoryInterface;
 use Psr\Container\ContainerInterface;
 
-class AuthControllerFactory
+class AuthControllerFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container)
     {

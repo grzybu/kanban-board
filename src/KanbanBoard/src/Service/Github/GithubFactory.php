@@ -3,11 +3,12 @@
 namespace KanbanBoard\Service\Github;
 
 use Cache\Adapter\Filesystem\FilesystemCachePool;
+use Common\DI\FactoryInterface;
 use Psr\Container\ContainerInterface;
 use Psr\SimpleCache\CacheInterface;
 use Github\Client as GithubClient;
 
-class GithubFactory
+class GithubFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container)
     {

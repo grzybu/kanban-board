@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace KanbanBoard\Read\Milestone;
 
-use Broadway\ReadModel\SerializableReadModel;
+use Common\Read\DeserializableModel;
 
-class Model implements SerializableReadModel
+class Model implements DeserializableModel
 {
     protected $identifier;
 
     protected $milestone;
     protected $number;
-    protected $closed_issues;
-    protected $open_issues;
-    protected $html_url;
+    protected $closedIssues;
+    protected $openIssues;
+    protected $htmlUrl;
     protected $repository;
     protected $title;
 
@@ -41,30 +41,30 @@ class Model implements SerializableReadModel
     }
 
     /**
-     * @param mixed $closed_issues
+     * @param mixed $closedIssues
      */
-    public function setClosedIssues($closed_issues): void
+    public function setClosedIssues($closedIssues): void
     {
-        $this->closed_issues = $closed_issues;
+        $this->closedIssues = $closedIssues;
     }
 
     /**
-     * @param mixed $open_issues
+     * @param mixed $openIssues
      */
-    public function setOpenIssues($open_issues): void
+    public function setOpenIssues($openIssues): void
     {
-        $this->open_issues = $open_issues;
+        $this->openIssues = $openIssues;
     }
 
     /**
-     * @param mixed $html_url
+     * @param mixed $htmlUrl
      */
-    public function setHtmlUrl($html_url): void
+    public function setHtmlUrl($htmlUrl): void
     {
-        $this->html_url = $html_url;
+        $this->htmlUrl = $htmlUrl;
     }
 
-    public function getId(): string
+    public function getId()
     {
         return $this->identifier;
     }
@@ -76,39 +76,23 @@ class Model implements SerializableReadModel
         $fields = [
             'title',
             'number',
-            'closed_issues',
-            'open_issues',
-            'html_url'
         ];
 
         foreach ($fields as $field) {
             $item->$field = $data[$field] ?? null;
         }
 
+        $item->closedIssues = $data['closed_issues'] ?? null;
+        $item->openIssues = $data['open_issues'] ?? null;
+        $item->htmlUrl = $data['html_url'] ?? null;
+
         return $item;
     }
 
-    public function serialize(): array
-    {
-        $serialized = [
-            'id' => $this->identifier,
-            'milestone' => $this->milestone,
-            'number' => $this->number,
-            'closed_issues' => $this->closed_issues,
-            'open_issues' => $this->open_issues,
-            'html_url' => $this->html_url,
-            'repository' => $this->repository,
-            'title' => $this->title,
-        ];
-
-        return $serialized;
-    }
-
-
     public function getPercent(): array
     {
-        $complete = $this->closed_issues;
-        $remaining = $this->open_issues;
+        $complete = $this->closedIssues;
+        $remaining = $this->openIssues;
 
         $total = $complete + $remaining;
         if ($total > 0) {
@@ -135,17 +119,17 @@ class Model implements SerializableReadModel
 
     public function getClosedIssues()
     {
-        return $this->closed_issues;
+        return $this->closedIssues;
     }
 
     public function getOpenIssues()
     {
-        return $this->open_issues;
+        return $this->openIssues;
     }
 
     public function getUrl()
     {
-        return $this->html_url;
+        return $this->htmlUrl;
     }
 
     public function getRepository(): string
@@ -171,7 +155,7 @@ class Model implements SerializableReadModel
      */
     public function getHtmlUrl()
     {
-        return $this->html_url;
+        return $this->htmlUrl;
     }
 
     public function setTitle(string $title)

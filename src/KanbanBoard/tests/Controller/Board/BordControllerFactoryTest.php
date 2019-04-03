@@ -8,7 +8,7 @@ use KanbanBoard\Service\Auth\AuthService;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
-use KanbanBoard\Read\Repository\Repository as RepositoryRepository;
+use KanbanBoard\Service\Board\BoardData;
 
 class BoardControllerFactoryTest extends \PHPUnit\Framework\TestCase
 {
@@ -17,7 +17,7 @@ class BoardControllerFactoryTest extends \PHPUnit\Framework\TestCase
     private $mustacheEngine;
     private $response;
     private $authService;
-    private $repositoryRepository;
+    private $boardDataService;
 
     public function setUp()
     {
@@ -26,12 +26,12 @@ class BoardControllerFactoryTest extends \PHPUnit\Framework\TestCase
 
         $this->authService = $this->getMockBuilder(AuthService::class)->disableOriginalConstructor()->getMock();
         $this->mustacheEngine = $this->getMockBuilder(\Mustache_Engine::class)->disableOriginalConstructor()->getMock();
-        $this->repositoryRepository = $this->getMockBuilder(RepositoryRepository::class)->disableOriginalConstructor()->getMock();
+        $this->boardDataService = $this->getMockBuilder(BoardData::class)->disableOriginalConstructor()->getMock();
         $this->response = $this->getMockBuilder(Response::class)->disableOriginalConstructor()->getMock();
     }
 
     /**
-     *
+     * @test
      */
     public function itCanCreate()
     {
@@ -52,8 +52,8 @@ class BoardControllerFactoryTest extends \PHPUnit\Framework\TestCase
         $this->container
             ->expects($this->at($offset++))
             ->method('get')
-            ->with('Repository\Repository')
-            ->willReturn($this->repositoryRepository);
+            ->with('Service\BoardData')
+            ->willReturn($this->boardDataService);
 
         $this->container
             ->expects($this->at($offset++))

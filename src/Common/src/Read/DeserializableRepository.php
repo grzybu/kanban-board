@@ -4,25 +4,25 @@ namespace Common\Read;
 
 use Broadway\Serializer\SimpleInterfaceSerializer;
 
-abstract class SerializableRepository
+abstract class DeserializableRepository
 {
     protected $class;
-    protected $serializer;
+    protected $deserializer;
 
     public function __construct(string $class)
     {
         $this->class = $class;
-        $this->serializer = $this->getSerializer();
+        $this->deserializer = $this->getDeserializer();
     }
 
-    protected function getSerializer()
+    protected function getDeserializer()
     {
-        return new SimpleInterfaceSerializer();
+        return new Deserializer();
     }
 
     protected function deserializeItem($item)
     {
-        return $this->serializer->deserialize(['class' => $this->class, 'payload' => $item]);
+        return $this->deserializer->deserialize(['class' => $this->class, 'payload' => $item]);
     }
 
     protected function deserializeItems($data)
