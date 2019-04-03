@@ -8,8 +8,8 @@ require 'vendor/autoload.php';
  */
 call_user_func(function () {
     // dummy exception handler
-    $eHandler = function (Throwable $throwable) {
-        die('Something went wrong ;(' . PHP_EOL . $throwable->getMessage());
+    $eHandler = function ( $errno, $errstr, $errfile, $errline) {
+        die('Something went wrong ;(' . PHP_EOL . $errstr);
     };
     set_error_handler($eHandler);
     set_exception_handler($eHandler);
