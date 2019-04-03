@@ -55,6 +55,7 @@ return [
 
         $request = Request::createFromGlobals();
         \Symfony\Component\HttpFoundation\Request::setTrustedProxies(
+            ['127.0.0.1', $request->server->get('REMOTE_ADDR')],
             Request::HEADER_X_FORWARDED_ALL
         );
 
