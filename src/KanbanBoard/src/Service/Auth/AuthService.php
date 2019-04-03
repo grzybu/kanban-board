@@ -81,6 +81,7 @@ class AuthService
         ];
 
         print "<pre>";
+        var_dump($_SERVER);
         var_dump($queryParams);exit;
         header('Location: ' . $this->githubAuthUrl . '?' . http_build_query($queryParams));
     }
