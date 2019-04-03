@@ -54,9 +54,8 @@ return [
     'Http\Request' => function () {
 
         $request = Request::createFromGlobals();
-        Request::setTrustedProxies(array($request->server->get('REMOTE_ADDR')));
-        Request::setTrustedHeaderName(Request::HEADER_FORWARDED, null);
-        Request::setTrustedHeaderName(Request::HEADER_CLIENT_HOST, null);
+        Request::setTrustedProxies([$request->server->get('REMOTE_ADDR')], Request::HEADER_X_FORWARDED_ALL ^ Request::HEADER_X_FORWARDED_HOST);
+
 
         return $request;
     },
