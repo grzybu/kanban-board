@@ -54,7 +54,8 @@ return [
     'Http\Request' => function () {
 
         $request = Request::createFromGlobals();
-        Request::setTrustedProxies([$request->server->get('REMOTE_ADDR')], Request::HEADER_X_FORWARDED_ALL ^ Request::HEADER_X_FORWARDED_HOST);
+        // This line is required to run app under proxy
+        Request::setTrustedProxies(['127.0.0.1', $request->server->get('REMOTE_ADDR')], Request::HEADER_X_FORWARDED_ALL ^ Request::HEADER_X_FORWARDED_HOST);
 
 
         return $request;

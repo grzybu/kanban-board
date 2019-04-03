@@ -79,10 +79,7 @@ class AuthService
             'state' => $this->getState(),
             'redirect_uri' => $this->config['redirectUri'] ?? $this->request->getUri()
         ];
-
-        print "<pre>";
-        var_dump($_SERVER);
-        var_dump($queryParams);exit;
+        
         header('Location: ' . $this->githubAuthUrl . '?' . http_build_query($queryParams));
     }
 
