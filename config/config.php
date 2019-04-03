@@ -4,18 +4,21 @@ use function DI\create;
 
 return [
 
-    // simple configs
+    // simple configurattion
     'Config\Github.Auth' => [
         'clientId' => DI\env('GH_CLIENT_ID'),
         'clientSecret' => DI\env('GH_CLIENT_SECRET'),
     ],
-    'Config\Github.Repositories' => [
-        'GH_ACCOUNT' => DI\env('GH_ACCOUNT'),
-        'GH_REPOSITORIES' => DI\env('GH_REPOSITORIES'),
+
+    'Config\Github.Repositories' => DI\env('GH_REPOSITORIES', []),
+
+    'Config\BoardConfig' => [
+        'account' => DI\env('GH_ACCOUNT'),
+        'pausedLabels' => ['waiting-for-feedback'],
     ],
 
     'SessionManager' => function () {
-        return new \KanbanBoard\Session\SessionManager('KanbanBoard', 'KNBSESSIONID');
+        return new \Common\Session\SessionManager('KNBSESSIONID');
     },
 
     Mustache_Engine::class => function () {
@@ -28,19 +31,14 @@ return [
 
     //services
     'Service\Auth' => DI\Factory(\KanbanBoard\Service\Auth\AuthServiceFactory::class),
-
-    'Service\Github\Client' => function () {
-        $filesystemAdapter = new \League\Flysystem\Adapter\Local(sys_get_temp_dir() . '/github-api-cache');
-        $filesystem = new \League\Flysystem\Filesystem($filesystemAdapter);
-        $cachePool = new \Cache\Adapter\Filesystem\FilesystemCachePool($filesystem);
-
-        $client = new Github\Client();
-        $client->addCache($cachePool);
-        return new $client;
-    },
+    'Service\Github' => DI\Factory(KanbanBoard\Service\Github\GithubFactory::class),
+    'Service\BoardData' => DI\Factory(KanbanBoard\Service\Board\BoardDataFactory::class),
 
     //repositories
-    'Repository/Milestone' => DI\Factory(\KanbanBoard\Read\Model\Milestone\RepositoryFactory::class),
+    'Repository\Milestone' => DI\Factory(\KanbanBoard\Read\Milestone\RepositoryFactory::class),
+    'Repository\Repository' => DI\Factory(\KanbanBoard\Read\Repository\RepositoryFactory::class),
+    'Repository\Issue' => DI\Factory(\KanbanBoard\Read\Issue\RepositoryFactory::class),
+
 
     'Dispatcher' => function () {
         $routes = function (\FastRoute\RouteCollector $r) {

@@ -5,7 +5,7 @@ namespace KanbanBoard\Service\Auth;
 
 use GuzzleHttp\Client;
 use Symfony\Component\HttpFoundation\Request;
-use KanbanBoard\Session\SessionManager;
+use Common\Session\SessionManager;
 
 class AuthService
 {

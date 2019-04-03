@@ -3,7 +3,7 @@
 namespace KanbanBoard\Service\Auth;
 
 use GuzzleHttp\Client;
-use KanbanBoard\Session\SessionManager;
+use Common\Session\SessionManager;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
