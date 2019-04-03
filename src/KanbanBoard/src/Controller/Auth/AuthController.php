@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace KanbanBoard\Controller\Auth;
 
 use KanbanBoard\Service\Auth\AuthService;
+use KanbanBoard\Service\Auth\StateVerifyException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,6 +39,13 @@ class AuthController
             } else {
                 $this->authService->requestIdentity();
             }
+        } catch (StateVerifyException $exception) {
+            return $this->response->setStatusCode(403)->setContent(
+                $exception->getMessage()
+                . PHP_EOL
+                . '<a href="/auth">Click to login again</a>'
+
+            );
         } catch (\RuntimeException $exception) {
             return $this->response->setStatusCode(403)->setContent($exception->getMessage());
         }

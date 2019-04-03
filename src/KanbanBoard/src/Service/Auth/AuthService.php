@@ -133,7 +133,7 @@ class AuthService
 
         if (!$this->verifyState($state)) {
             $this->clearState();
-            throw new \RuntimeException('Could not verify state param. Please refresh page');
+            throw new StateVerifyException('Could not verify state param.');
         }
 
         $token = $this->getAccessToken($code, $state);
