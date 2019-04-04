@@ -42,7 +42,6 @@ class AuthServiceTest extends TestCase
     public function tearDown()
     {
         parent::tearDown();
-        unset($_SESSION);
     }
 
     /**
@@ -111,25 +110,21 @@ class AuthServiceTest extends TestCase
      */
     public function itCanRequestAuthentity()
     {
-        $state = random_bytes(32);
 
-        $this->sessionManager->expects($this->at(0))
-            ->method('get')
-            ->with('state')
-            ->willReturn($state);
+        $service = new AuthService($this->config, $this->httpClient, $this->httpRequest, $this->sessionManager);
 
+        $service->requestIdentity();
+        $locationUrl = "Location: https://github.com/login/oauth/authorize?";
 
-        $sevice = new AuthService($this->config, $this->httpClient, $this->httpRequest, $this->sessionManager);
+        $hasGithubRedirect = false;
 
-        $queryParams = [
-            'client_id' => $this->config['clientId'],
-            'scope' => 'repo',
-            'state' => $state,
-        ];
+        foreach (xdebug_get_headers() as $header) {
+            if (strpos($header, $locationUrl) === 0) {
+                $hasGithubRedirect = true;
+            }
+        }
 
-        $locationUrl = "https://github.com/login/oauth/authorize?" . http_build_query($queryParams);
-        $sevice->requestIdentity();
-        $this->assertContains('Location: ' . $locationUrl, xdebug_get_headers());
+        $this->assertEquals(true, $hasGithubRedirect);
     }
 
     /**

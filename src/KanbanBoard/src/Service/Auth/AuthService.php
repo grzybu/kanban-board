@@ -44,7 +44,7 @@ class AuthService
     }
 
     // Generate a random hash and store in the session for security
-    protected function getState(): string
+    public function getState(): string
     {
         $state = $this->sessionManager->get('state');
         if (!$state) {
@@ -73,6 +73,8 @@ class AuthService
      */
     public function requestIdentity()
     {
+        $this->clearState();
+
         $queryParams = [
             'client_id' => $this->config['clientId'],
             'scope' => 'repo',
